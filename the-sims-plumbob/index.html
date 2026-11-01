@@ -130,8 +130,14 @@
       font-weight: 700;
       font-size: 1.02rem;
       letter-spacing: 0.01em;
+      text-decoration: none;
       text-shadow: 0 1.5px 2px rgba(0, 0, 0, 0.75);
       user-select: none;
+    }
+
+    .site-brand:hover {
+      color: #dbeafe;
+      background: transparent;
     }
 
     .plumbob-btn {
@@ -420,7 +426,7 @@
   <!-- Playful Sims 1/2 Top Bar -->
   <header class="sims-hud-bar">
     <div class="sims-hud-inner">
-      <span class="site-brand">Adem's Blog on the Web</span>
+      <a href="../" class="site-brand">Adem's Blog on the Web</a>
       <button type="button" class="plumbob-btn" id="themeToggleBtn" aria-label="Toggle light or dark mode">
         <svg class="plumbob-svg" viewBox="0 0 40 56" aria-hidden="true">
           <polygon points="20,2 4,28 20,28" fill="var(--plumbob-top)" />
