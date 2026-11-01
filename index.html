@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adem's Blog on the Web</title>
+  <meta name="description" content="Adem's Blog on the Web">
+  <style>
+    :root,
+    [data-theme="light"] {
+      color-scheme: light;
+      --sims-blue-top: #3c7be0;
+      --sims-blue-mid: #1d4fb8;
+      --sims-blue-bot: #0e2d75;
+      --sims-bevel-light: #7fb2ff;
+      --sims-bevel-dark: #07163b;
+
+      --page-bg: #dce7f9;
+      --page-bg-gradient:
+        radial-gradient(circle at 18% 12%, rgba(60, 123, 224, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 82% 85%, rgba(0, 230, 64, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, #e4eefc 0%, #cfdff8 100%);
+      --window-border: #4a84e8;
+      --window-inner-border: #1d4fb8;
+      --window-shadow: 0 18px 45px rgba(13, 36, 86, 0.22);
+      --article-bg: #ffffff;
+      --text-main: #162238;
+      --text-muted: #4a5c7a;
+      --card-bg: #f2f6ff;
+      --card-border: #bfd4f8;
+      --card-hover-border: #3c7be0;
+
+      --plumbob-color: #00e640;
+      --plumbob-glow: rgba(0, 230, 64, 0.55);
+      --plumbob-top: #66ff8c;
+      --plumbob-left: #00e640;
+      --plumbob-right: #009929;
+      --plumbob-bot: #00661a;
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --page-bg: #071126;
+      --page-bg-gradient:
+        radial-gradient(circle at 18% 12%, rgba(60, 123, 224, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 82% 85%, rgba(0, 230, 64, 0.12) 0%, transparent 50%),
+        linear-gradient(180deg, #091735 0%, #050d1f 100%);
+      --window-border: #3d73d9;
+      --window-inner-border: #0a1c47;
+      --window-shadow: 0 22px 55px rgba(0, 0, 0, 0.65);
+      --article-bg: #0d1b3a;
+      --text-main: #e5eefc;
+      --text-muted: #9cb4d8;
+      --card-bg: #132652;
+      --card-border: #274891;
+      --card-hover-border: #6ba4ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Trebuchet MS", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--page-bg);
+      background-image: var(--page-bg-gradient);
+      color: var(--text-main);
+      line-height: 1.65;
+      font-size: 1.08rem;
+      min-height: 100vh;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .sims-hud-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, #2d63c8 0%, #163a85 52%, #0c2357 100%);
+      border-bottom: 3px solid var(--sims-bevel-dark);
+      box-shadow:
+        inset 0 2px 0 var(--sims-bevel-light),
+        0 4px 16px rgba(0, 0, 0, 0.45);
+      padding: 0.55rem 1.25rem;
+    }
+
+    .sims-hud-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .site-brand {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.02rem;
+      letter-spacing: 0.01em;
+      text-shadow: 0 1.5px 2px rgba(0, 0, 0, 0.75);
+      user-select: none;
+    }
+
+    .plumbob-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(180deg, #1b3f8c 0%, #0b204f 100%);
+      border: 2px solid var(--sims-bevel-light);
+      border-radius: 999px;
+      padding: 0.3rem 0.9rem 0.3rem 0.6rem;
+      color: #ffffff;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.35),
+        0 2px 6px rgba(0, 0, 0, 0.4);
+      user-select: none;
+    }
+
+    .plumbob-svg {
+      width: 18px;
+      height: 26px;
+      filter: drop-shadow(0 0 6px var(--plumbob-glow));
+    }
+
+    .page-shell {
+      max-width: 720px;
+      margin: 3.5rem auto 4rem;
+      padding: 0 1rem;
+    }
+
+    .sims-window {
+      background: var(--article-bg);
+      border: 3px solid var(--window-border);
+      border-radius: 26px;
+      box-shadow:
+        inset 0 0 0 2px var(--window-inner-border),
+        var(--window-shadow);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .sims-title-banner {
+      background: linear-gradient(180deg, var(--sims-blue-top) 0%, var(--sims-blue-mid) 48%, var(--sims-blue-bot) 100%);
+      border-bottom: 3px solid #091d4f;
+      box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.45);
+      padding: 1.75rem 2.2rem;
+    }
+
+    h1 {
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(1.65rem, 3.8vw, 2.2rem);
+      text-shadow: 0 2px 0 #07163b;
+    }
+
+    .article-body {
+      padding: 2.2rem 2rem 2.5rem;
+    }
+
+    .status-text {
+      margin: 0 0 1.6rem;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .post-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1.45rem;
+      background: linear-gradient(180deg, var(--sims-blue-top) 0%, var(--sims-blue-mid) 50%, var(--sims-blue-bot) 100%);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.08rem;
+      text-decoration: none;
+      border-radius: 999px;
+      border: 2px solid #0b2259;
+      box-shadow:
+        inset 0 2px 0 var(--sims-bevel-light),
+        0 4px 12px rgba(0, 0, 0, 0.28);
+      text-shadow: 0 1.5px 0 #07163b;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .post-link:hover {
+      transform: translateY(-1.5px);
+      box-shadow:
+        inset 0 2px 0 var(--sims-bevel-light),
+        0 0 14px var(--plumbob-glow);
+    }
+
+    .post-link::before {
+      content: "";
+      display: inline-block;
+      width: 11px;
+      height: 16px;
+      background: var(--plumbob-color);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      box-shadow: 0 0 6px var(--plumbob-glow);
+    }
+  </style>
+  <script>
+    (function () {
+      var saved = localStorage.getItem("sims-blog-theme");
+      if (saved === "light" || saved === "dark") {
+        document.documentElement.setAttribute("data-theme", saved);
+      } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+</head>
+<body>
+  <header class="sims-hud-bar">
+    <div class="sims-hud-inner">
+      <span class="site-brand">Adem's Blog on the Web</span>
+      <button type="button" class="plumbob-btn" id="themeToggleBtn" aria-label="Toggle light or dark mode">
+        <svg class="plumbob-svg" viewBox="0 0 40 56" aria-hidden="true">
+          <polygon points="20,2 4,28 20,28" fill="var(--plumbob-top)" />
+          <polygon points="20,2 36,28 20,28" fill="var(--plumbob-left)" />
+          <polygon points="4,28 20,54 20,28" fill="var(--plumbob-right)" />
+          <polygon points="36,28 20,54 20,28" fill="var(--plumbob-bot)" />
+        </svg>
+        <span id="themeLabel">Dark Mode</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="sims-window">
+      <div class="sims-title-banner">
+        <h1>🚧 Under Construction</h1>
+      </div>
+      <div class="article-body">
+        <p class="status-text">Currently in Build Mode. In the meantime, check out the one and only blog post:</p>
+        <a class="post-link" href="the-sims-plumbob/">Why and How to Become a Sim</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var btn = document.getElementById("themeToggleBtn");
+      var label = document.getElementById("themeLabel");
+      var root = document.documentElement;
+      function syncButtonText() {
+        var current = root.getAttribute("data-theme") || "dark";
+        label.textContent = current === "dark" ? "Dark Mode" : "Light Mode";
+      }
+      syncButtonText();
+      btn.addEventListener("click", function () {
+        var current = root.getAttribute("data-theme") || "dark";
+        var next = current === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        localStorage.setItem("sims-blog-theme", next);
+        syncButtonText();
+      });
+    })();
+  </script>
+</body>
+</html>
